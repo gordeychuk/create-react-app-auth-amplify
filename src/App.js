@@ -14,7 +14,7 @@ function App({ signIn, signOut, user }) {
   return (
     <>
       <h1>Hello {user && user.username}</h1>
-        <p>access token (jwtToken): {user && user.signInUserSession.accessToken.signInUserSession}</p>
+        <p>access token (jwtToken): {user && user.signInUserSession.accessToken.jwtToken}</p>
       <button onClick={signOut}>Sign out</button>
     </>
   );
