@@ -14,7 +14,7 @@ class App extends Component {
     return (
       <div className="App">
         <AmplifySignOut />
-        <div>info: {Auth.currentUserInfo()}</div>
+        <div>info: {JSON.stringify(Auth.currentUserInfo())}</div>
       </div>
     );
   }
