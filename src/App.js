@@ -1,3 +1,5 @@
+import React, { Component } from 'react';
+
 import { Amplify, Auth } from 'aws-amplify';
 
 import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
