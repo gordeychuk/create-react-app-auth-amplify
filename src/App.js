@@ -4,27 +4,20 @@ import { withAuthenticator } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
 
 import awsExports from './aws-exports';
+
+console.log(awsExports);
 Amplify.configure(awsExports);
 
-function App({ isPassedToWithAuthenticator, signOut, user }) {
-  if (!isPassedToWithAuthenticator) {
-    throw new Error(`isPassedToWithAuthenticator was not provided`);
-  }
+function App({ signIn, signOut, user }) {
+  console.log(user);
 
   return (
     <>
-      <h1>Hello {user.username}</h1>
+      <h1>Hello {user && user.username}</h1>
+      <button onClick={signIn}>Sign in</button>
       <button onClick={signOut}>Sign out</button>
     </>
   );
 }
 
 export default withAuthenticator(App);
-
-export async function getStaticProps() {
-  return {
-    props: {
-      isPassedToWithAuthenticator: true,
-    },
-  };
-}
