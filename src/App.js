@@ -1,23 +1,30 @@
-import React, { Component } from 'react';
+import { Amplify } from 'aws-amplify';
 
-import { Amplify, Auth } from 'aws-amplify';
-
-import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
-import './App.css';
-// import '@aws-amplify/ui-react/styles.css';
+import { withAuthenticator } from '@aws-amplify/ui-react';
+import '@aws-amplify/ui-react/styles.css';
 
 import awsExports from './aws-exports';
 Amplify.configure(awsExports);
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <AmplifySignOut />
-        <div>info: {JSON.stringify(Auth.currentUserInfo())}</div>
-      </div>
-    );
+function App({ isPassedToWithAuthenticator, signOut, user }) {
+  if (!isPassedToWithAuthenticator) {
+    throw new Error(`isPassedToWithAuthenticator was not provided`);
   }
+
+  return (
+    <>
+      <h1>Hello {user.username}</h1>
+      <button onClick={signOut}>Sign out</button>
+    </>
+  );
 }
 
 export default withAuthenticator(App);
+
+export async function getStaticProps() {
+  return {
+    props: {
+      isPassedToWithAuthenticator: true,
+    },
+  };
+}
