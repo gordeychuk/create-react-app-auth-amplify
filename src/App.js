@@ -7,10 +7,11 @@ import './App.css';
 import awsExports from './aws-exports';
 Amplify.configure(awsExports);
 
-function App({ signOut, user }) {
+function App({ signIn, signOut, user }) {
   return (
     <>
-      <h1>Hello {user.username}</h1>
+      <h1>Hello {user && user.username}</h1>
+      <button onClick={signIn}>Sign in</button>
       <button onClick={signOut}>Sign out</button>
     </>
   );
