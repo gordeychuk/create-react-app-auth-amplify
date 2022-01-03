@@ -52,7 +52,7 @@ export default function App() {
                     <button onClick={signOut}>Sign out</button>
                 </>
 
-            )¬}
+            )}
 
         </Authenticator>
     );
